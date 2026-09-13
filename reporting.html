@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="eng">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Reporting</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <h1>REPORT FORM</h1>
+        <div>
+        <form center style="background-color: lightpink;">
+            <div center style="margin-bottom: 20px;">
+            <label>Reporter:</label>
+            <select id="reporter" name="Reporter">
+                <option value="Victim">Victim</option>
+                <option value="Third party">Third party</option>
+            </select>
+            </div>
+            <label>Relationship:</label><input id="relationship" type="text" placeholder="Relationship with the victim">
+            <H2>VICTIM`S DETAILS</h2>
+            <div>
+            <label>Name:</label><input id="victimName" type="text" placeholder="Enter your full name">
+            </div>
+            <br>
+            <div>
+            <label>Age:</label><input id="victimAge" type="number" placeholder="Enter your age">
+            </div>
+            <br>
+            <div>
+            <label>Id:</label><input id="victimId" type="number" placeholder="Enter your ID">
+            </div>
+            <div style="margin-bottom: 20px;margin-top: 20px;">
+            <lable>Location:</lable><input id="victimLocation" type="text" placeholder="Enter your address">
+            </div>
+            <div>
+                <label>Witness:</label><input id="victimWitness" type="text" placeholder="Witness">
+            </div>
+            
+            <div style="width: 100%;margin: 8px 0;box-sizing: border-box">
+            <label>Type of abuse:</label>
+            <select id="abuseType" name="Type of abuse">
+                <option value="Physical">Physical</option>
+                <option value="Sexual">Sexual</option>
+                <option value="Financial">Financial</option>
+                <option value="Threats">Threats</option>
+                <option value="Murder">Murder</option>
+            </select>
+            </div>
+
+            <div>
+            <label>Description:</label>
+            <br><textarea id="description" placeholder="Describe the incident" rows="10" cols="50"></textarea><br>
+            </div>
+            
+            <h3>ABUSER`S DETAILS</h3>
+        <div>
+            <label>Name:</label><input id="abuserName" type="text" placeholder="Enter their name">
+            </div>
+            <br>
+            <div>
+            <label>Age:</label><input id="abuserAge" type="number" placeholder="Enter their age">
+            </div>
+            <br>
+            <div>
+            <label>Id:</label><input id="abuserId" type="number" placeholder="Enter their ID">
+            </div>
+            <br>
+            <div center style="margin-bottom: 20px;">
+            <lable>Location:</lable><input id="abuserLocation" type="text" placeholder="Enter their address">
+            </div>
+            <div>
+                    <button type="button" onclick="submitReport()">Submit</button>
+
+            </div>
+
+           
+        </form>
+        </div>
+        <script>
+            
+            function submitReport() {
+                // Collect all form values
+          const urlParams = new URLSearchParams(window.location.search);
+          const userId = urlParams.get("userId");
+       
+        const Reporter = document.getElementById("reporter").value;
+        const Relationship = document.getElementById("relationship").value;
+        const VictimName = document.getElementById("victimName").value;
+        const VictimAge = document.getElementById("victimAge").value;
+        const VictimId = document.getElementById("victimId").value;
+        const VictimLocation = document.getElementById("victimLocation").value;
+        const VictimWitness = document.getElementById("victimWitness").value;
+        const AbuserName = document.getElementById("abuserName").value;
+        const AbuserAge = document.getElementById("abuserAge").value;
+        const AbuserId = document.getElementById("abuserId").value;
+        const AbuserLocation = document.getElementById("abuserLocation").value;
+        const AbuseType = document.getElementById("abuseType").value;
+        const Description = document.getElementById("description").value;
+
+
+                
+                fetch('http://127.0.0.1:8000/reporting/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    userId:userId,                      
+                    reporter: Reporter,
+                    relationship: Relationship,
+                    victimName: VictimName,
+                    victimAge: VictimAge,
+                    victimId: VictimId,
+                    victimLocation: VictimLocation,
+                    victimWitness:VictimWitness,
+                    abuserName: AbuserName,
+                    abuserAge: AbuserAge,
+                    abuserId: AbuserId,
+                    abuserLocation:AbuserLocation,
+                    abusetype:AbuseType,
+                    description:Description
+
+                     })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            alert(data.error);
+        } else {
+                                
+                alert("Submitted successfully!");
+                window.location.href = "tracking.html"; 
+            }
+            })
+    .catch(error => {
+        console.error("Error:", error);
+        alert("Something went wrong. Please try again.");
+    });
+}
+        </script>
+    
+
+    </body>
+</html>

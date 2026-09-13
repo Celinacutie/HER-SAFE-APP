@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="eng">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>LOG IN</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body class="logbody">
+        <div class="login_menu">
+            <h1>Login</h1>
+                        <p><label>Email:</label><input id="Email" type="text" placeholder="Enter your email"></p>
+                        <p><label>Password:</label><input id="Password" type="password" placeholder="Enter your password"></p>
+                        <p><button onclick="log_in()">Login</button></p>
+                        <p> No account? <a href="Sign up.HTML">Sign up</a></p>
+                
+
+                <script>
+                    function log_in(){
+                        const Email=document.getElementById("Email").value
+                        const Password=document.getElementById("Password").value
+                                                
+                        if (Email===""|| Password===""){
+                        alert("please fill in all the fields!!")
+                        return
+                        }
+
+                        
+                        fetch('http://127.0.0.1:8000/login/', {
+                            method: 'POST',
+                            credentials: 'include',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                              Email: Email,
+                              Password: Password
+                           })
+                   })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert(data.error);
+            } else {
+                
+                                                                   
+                        alert("Welcome back!");
+                        window.location.href = "index.html?userId=" + data.userId;
+    
+                
+                    }
+                })
+                .catch(error => {
+            console.error("Error:", error);
+            alert("Something went wrong. Please try again.");
+        });
+    
+            }
+                
+                </script>
+                </div>
+    </body>
+</html>

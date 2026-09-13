@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="eng">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sign up</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body class="body_sign">
+        <div class="sign_up">
+            <h1><center style="margin-top: 50px;"></center>Sign up</h1>
+            <p><label>Gender:</label>
+            <select id="Gender" name="Gender">
+            <option value="Female">Female</option>
+            <option value="Male">Male</option>
+             </select>
+             
+    </p>
+            <p id="alert-msg" style="color: red;text-align: center;display: none;">THIS IS A WOMEN ONLY PLATFORM!!</p>
+            <p><label>Email:</label><input id="Email" type="text" placeholder="Enter your email"></p>
+            <p><label>Full name</label><input id="Full_name" type="text" placeholder="Enter your full name"></p>
+            <p><label>Create password:</label><input id="Create_password" type="password" placeholder="Enter your password"></p>
+            <p><label>Confirm password:</label><input id="Confirm_password" type="password" placeholder="Enter your password"></p>
+            <p><button onclick="sign_up()">Sign up</button></p>
+
+        
+        <script>
+            function sign_up(){
+                const Gender=document.getElementById("Gender") .value
+                const Email=document.getElementById("Email").value
+                const Full_name=document.getElementById("Full_name").value
+                const Create_password=document.getElementById("Create_password").value
+                const Confirm_password=document.getElementById("Confirm_password").value
+
+                if (Gender==="Male"){
+                document.getElementById("alert-msg").style.display="block"
+                return;
+                }
+
+                if (Gender===""|| Email===""|| Create_password===""|| Confirm_password===""|| Full_name===""){
+                alert("please fill in all the fields!!")
+                return
+                }
+
+                if(Create_password!==Confirm_password){
+                alert("passwords dont match!!")
+                return
+                }
+
+fetch('http://127.0.0.1:8000/signup/', {
+method: 'POST',
+credentials: 'include',
+headers: { 'Content-Type': 'application/json' },
+ body: JSON.stringify({
+        Email: Email,
+        Full_name: Full_name,
+        Create_password: Create_password,
+        Gender: Gender
+
+    })
+})
+.then(response => response.json())
+.then(data => {
+    if (data.error) {
+        alert(data.error);
+    } else {
+                
+
+                alert("Welcome home");
+                window.location.href="index.html"
+            }
+        });
+    }
+    
+        </script>
+
+        </div>
+    </body>
+    </html>

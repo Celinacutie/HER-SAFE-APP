@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>her_safe_app</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="logo_menu">
+    <img src="her_safe_logo.svg" alt="Öur Logo">
+    </div>
+    
+    <div>
+    <nav>
+            <ul>
+              <li class="dropdown">
+               <span class="/dropdown_label">Profile</span>
+                 <ul class="dropdown_menu">
+              <li><a href="/account">Account</a></li>
+              <li><a href="/activity">Activity</a></li>
+              <li><a href="/change password">Change password</a></li>
+            </ul>
+           </li>
+        <li><a href="/home">Home</a></li>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/services" id="servicesLink">Services</a></li>
+        <li><a href="/about">About Us</a></li>
+      </ul>
+    </nav>
+    </div>
+    <h1><center style=" background-repeat:repeat; color: #9b1c1c;:red; margin-top:50px;font: 100%;;">HER SAFE</center></h1>
+    <div class="image_menu">
+     <img src="safe image.jpg">
+     <p><i>When women and children are protected,we can say we are a powerful country.</i></p>
+    </div>
+    
+    
+    <div class="base">
+       
+    <P><b><center style="margin-top: 50px;font: 80%;">Welcome to HER SAFE,a womens only platform for reporting abuse against women and children.You can also do a verification check on someone by looking them up.Click on the services menu to access the service you want.</b></P>
+    <h2><center style="color:green;font: 50%;margin-top: 50px;word-spacing: 30px;">HER_SAFE YOUR_SAFE OUR_SAFE</center></h2>
+    </div>
+  
+    <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const userId = urlParams.get("userId");
+    document.getElementById("servicesLink").href = "/services?userId=" + userId;
+</script>
+  
+  </body>
+</html>

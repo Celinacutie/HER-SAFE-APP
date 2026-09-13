@@ -1,0 +1,18 @@
+<svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <title>Her Safe Logo</title>
+
+  <circle cx="150" cy="150" r="145" fill="#e8f5e9"/>
+  <circle cx="150" cy="150" r="140" fill="none" stroke="#2e7d32" stroke-width="8"/>
+  <circle cx="150" cy="150" r="128" fill="none" stroke="#66bb6a" stroke-width="2" stroke-dasharray="6 4"/>
+
+  <text
+    x="150"
+    y="175"
+    text-anchor="middle"
+    font-family="Georgia, serif"
+    font-size="78"
+    font-weight="700"
+    fill="#2e7d32"
+    letter-spacing="6">SAFE</text>
+
+</svg>

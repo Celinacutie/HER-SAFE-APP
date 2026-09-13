@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="eng">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Services</title>
+        <link rel="stylesheet" href="style.css"
+          </head>
+    <body>
+        <div class="services_menu">
+            <nav>
+                <ul>
+                    <li><a href="/Reporting" id="reportingLink">Reporting</a></li>
+                    <li><a href="/Tracking">Tracking</a></li>
+                    <li><a href="/Counselling">Counselling</a></li>
+                    <li><a href="/Verification">Verification</a></li>
+                </ul>
+            </nav>
+        </div>
+ 
+        <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const userId = urlParams.get("userId");
+    document.getElementById("reportingLink").href = "/Reporting?userId=" + userId;
+</script>
+    </body>
+</html>
